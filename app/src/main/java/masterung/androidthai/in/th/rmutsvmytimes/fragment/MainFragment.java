@@ -1,12 +1,15 @@
 package masterung.androidthai.in.th.rmutsvmytimes.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -16,6 +19,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Map;
 
+import masterung.androidthai.in.th.rmutsvmytimes.GraphActivity;
 import masterung.androidthai.in.th.rmutsvmytimes.R;
 
 /**
@@ -29,6 +33,7 @@ public class MainFragment extends Fragment{
     private DatabaseReference databaseReference;
     private FirebaseDatabase firebaseDatabase;
     private String myTimesString;
+    private Button button;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -54,6 +59,21 @@ public class MainFragment extends Fragment{
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+//        Graph Controller
+        button = getView().findViewById(R.id.btnShowGraph);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(getActivity(), "Show Graph", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(getActivity(), GraphActivity.class);
+                startActivity(intent);
 
             }
         });
